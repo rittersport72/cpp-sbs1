@@ -5,14 +5,15 @@
 
 // STL
 #include <string>
+#include <map>
 
 namespace SBS1
 {
     Sbs1Message parse(const std::string& message_string);
 
-    MessageType getMessageTypeEnum(std::string type);
+    MessageType getMessageTypeEnum(const std::string& type);
 
-    TransmissionType getTransmissionTypeEnum(std::string type);
+    TransmissionType getTransmissionTypeEnum(const std::string& type);
 }
 
 #endif // SBS1_H

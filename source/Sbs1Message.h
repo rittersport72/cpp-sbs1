@@ -8,6 +8,7 @@ namespace SBS1
 {
     enum class MessageType
     {
+        Undefined,
         SelectionChange,
         NewId,
         NewAircraft,
@@ -15,11 +16,11 @@ namespace SBS1
         Click,
         /// Indicates a transmission from an aircraft. This type is most common.
         Transmission,
-        Undefined,
     };
 
     enum class TransmissionType
     {
+        Undefined,
         EsIdentAndCategory,
         EsSurfacePos,
         EsAirbornePos,
@@ -28,7 +29,6 @@ namespace SBS1
         SurveillanceId,
         AirToAir,
         AllCallReply,
-        Undefined,
     };
 
     /*
