@@ -7,7 +7,7 @@ namespace SBS1
     , transmission_type(TransmissionType::Undefined) 
     , session_id(0)
     , aircraft_id(0)
-    , ident(0)
+    , ident("")
     , flight_id(0)
     // , generated(0)
     // , logged(0)

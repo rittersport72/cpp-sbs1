@@ -53,7 +53,7 @@ namespace SBS1
             unsigned int session_id;
             unsigned int aircraft_id;
             /// Aircraft identifier
-            unsigned int ident;
+            std::string ident;
             unsigned int flight_id;
             /// When the message was generated
             // generated: Option<DateTime<Local>>,

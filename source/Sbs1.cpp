@@ -48,7 +48,7 @@ namespace SBS1
         
         if (tokens[4].length() > 0)
         {
-            sbs1Message.ident = std::stoi(tokens[4]);
+            sbs1Message.ident = tokens[4];
         }
         
         if (tokens[5].length() > 0)
