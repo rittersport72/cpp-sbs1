@@ -35,25 +35,89 @@ namespace SBS1
         Sbs1Message sbs1Message;
         sbs1Message.message_type = getMessageTypeEnum(tokens[0]);
         sbs1Message.transmission_type = getTransmissionTypeEnum(tokens[1]);
-        sbs1Message.session_id = std::stoi(tokens[2]);
-        sbs1Message.aircraft_id = std::stoi(tokens[3]);
-        sbs1Message.ident = std::stoi(tokens[4]);
-        sbs1Message.flight_id = std::stoi(tokens[5]);
+        
+        if (tokens[2].length() > 0)
+        {
+            sbs1Message.session_id = std::stoi(tokens[2]);
+        }
+        
+        if (tokens[3].length() > 0)
+        {
+            sbs1Message.aircraft_id = std::stoi(tokens[3]);
+        }
+        
+        if (tokens[4].length() > 0)
+        {
+            sbs1Message.ident = std::stoi(tokens[4]);
+        }
+        
+        if (tokens[5].length() > 0)
+        {
+            sbs1Message.flight_id = std::stoi(tokens[5]);
+        }
         //sbs1Message.generated = tokens[6] tokens[7]
         //sbs1Message.logged = tokens[8] tokens[9]
-        sbs1Message.callsign = tokens[10];
-        sbs1Message.altitude = std::stod(tokens[11]);  
-        sbs1Message.ground_speed = std::stod(tokens[12]);
-        sbs1Message.track = std::stod(tokens[13]);
-        sbs1Message.latitude = std::stod(tokens[14]);
-        sbs1Message.longitude = std::stod(tokens[15]);
-        sbs1Message.vertical_speed = std::stod(tokens[16]);
-        sbs1Message.squawk = std::stoi(tokens[17]);
-        sbs1Message.alert = (bool) std::stoi(tokens[18]);
-        sbs1Message.emergency = (bool) std::stoi(tokens[19]);
-        sbs1Message.special_position = (bool) std::stoi(tokens[20]);
-        sbs1Message.on_ground = (bool) std::stoi(tokens[21]);
-    
+        
+        if (tokens[10].length() > 0)
+        {
+            sbs1Message.callsign = tokens[10];
+        }
+
+        if (tokens[11].length() > 0)
+        {
+            sbs1Message.altitude = std::stod(tokens[11]);  
+        }
+
+        if (tokens[12].length() > 0)
+        {
+            sbs1Message.ground_speed = std::stod(tokens[12]);
+        }
+
+        if (tokens[13].length() > 0)
+        {
+            sbs1Message.track = std::stod(tokens[13]);
+        }
+
+        if (tokens[14].length() > 0)
+        {
+            sbs1Message.latitude = std::stod(tokens[14]);
+        }
+
+        if (tokens[15].length() > 0)
+        {
+            sbs1Message.longitude = std::stod(tokens[15]);
+        }
+
+        if (tokens[16].length() > 0)
+        {
+            sbs1Message.vertical_speed = std::stod(tokens[16]);
+        }
+
+        if (tokens[17].length() > 0)
+        {
+            sbs1Message.squawk = std::stoi(tokens[17]);
+        }
+
+        if (tokens[18].length() > 0)
+        {
+            sbs1Message.alert = (bool) std::stoi(tokens[18]);
+        }
+
+        if (tokens[19].length() > 0)
+        {
+            sbs1Message.emergency = (bool) std::stoi(tokens[19]);
+        }
+
+        if (tokens[20].length() > 0)
+        {
+            sbs1Message.special_position = (bool) std::stoi(tokens[20]);
+        }
+
+        if (tokens[21].length() > 0)
+        {
+            sbs1Message.on_ground = (bool) std::stoi(tokens[21]);
+        }
+
         return sbs1Message;
     }
 

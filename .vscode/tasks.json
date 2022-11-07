@@ -8,6 +8,12 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "-I",
+                "${workspaceFolder}/source",
+                "-L",
+                "${workspaceFolder}/build",
+                "-l",
+                "sbs1",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
