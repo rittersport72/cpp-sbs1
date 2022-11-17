@@ -3,6 +3,7 @@
 
 // STL
 #include <string>
+#include <iomanip>
 
 namespace SBS1
 {
@@ -41,7 +42,11 @@ namespace SBS1
             /*
             * Constructor
             */
-            Sbs1Message();
+            Sbs1Message()
+            {
+                generated = {};
+                logged = {};
+            };
 
         // Attributes
         public:
@@ -56,9 +61,9 @@ namespace SBS1
             std::string ident;
             unsigned int flight_id;
             /// When the message was generated
-            // generated: Option<DateTime<Local>>,
+            std::tm generated;
             /// When the message was logged
-            // logged: Option<DateTime<Local>>,
+            std::tm logged;
             /// The flight number or callsign
             std::string callsign;
             /// The altitude of the aircraft above mean sea level, assuming an altimeter setting of

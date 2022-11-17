@@ -1,7 +1,7 @@
 #include "Sbs1.h"
 
 // STL
-#include <vector>
+#include <map>
 #include <sstream>
 #include <iostream>
 
@@ -31,6 +31,14 @@ namespace SBS1
             return Sbs1Message();
         }
 
+        // Assign message
+        Sbs1Message sbs1Message = internalExtract(tokens);
+
+        return sbs1Message;
+    }
+
+    Sbs1Message internalExtract(const std::vector <std::string>& tokens)
+    {
         // Create message and assign attributes
         Sbs1Message sbs1Message;
         sbs1Message.message_type = getMessageTypeEnum(tokens[0]);
@@ -55,8 +63,22 @@ namespace SBS1
         {
             sbs1Message.flight_id = std::stoi(tokens[5]);
         }
-        //sbs1Message.generated = tokens[6] tokens[7]
-        //sbs1Message.logged = tokens[8] tokens[9]
+
+        std::istringstream datetime1(tokens[6] + " " + tokens[7]);
+        datetime1 >> std::get_time(&sbs1Message.generated, "%Y/%m/%d %H:%M:%S");
+
+        if (datetime1.fail())
+        {
+            std::cout << "Parse generated time failed\n";
+        }
+
+        std::istringstream datetime2(tokens[8] + " " + tokens[9]);
+        datetime2 >> std::get_time(&sbs1Message.logged, "%Y/%m/%d %H:%M:%S");
+
+        if (datetime2.fail())
+        {
+            std::cout << "Parse logged time failed\n";
+        }
         
         if (tokens[10].length() > 0)
         {

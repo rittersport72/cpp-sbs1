@@ -5,11 +5,13 @@
 
 // STL
 #include <string>
-#include <map>
+#include <vector>
 
 namespace SBS1
 {
     Sbs1Message parse(const std::string& message_string);
+
+    Sbs1Message internalExtract(const std::vector <std::string>& tokens);
 
     MessageType getMessageTypeEnum(const std::string& type);
 
