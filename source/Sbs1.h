@@ -6,9 +6,26 @@
 // STL
 #include <string>
 #include <vector>
+#include <stdexcept>
 
 namespace SBS1
 {
+    class ParseException : public std::exception
+    {
+        public:
+            ParseException(const std::string& text) : error(text)
+            {
+            }
+
+            virtual const char* what() const throw()
+            {
+                return error.c_str();
+            }
+
+        private:
+            const std::string error;
+    };
+
     Sbs1Message parse(const std::string& message_string);
 
     Sbs1Message internalExtract(const std::vector <std::string>& tokens);

@@ -23,12 +23,8 @@ namespace SBS1
         
         // Printing the token vector
         for(int i = 0; i < tokens.size(); i++)
-            std::cout << tokens[i] << std::endl;
-
-        // TODO checkme
-        if (tokens.size() < 22)
         {
-            return Sbs1Message();
+            std::cout << tokens[i] << std::endl;
         }
 
         // Assign message
@@ -39,6 +35,12 @@ namespace SBS1
 
     Sbs1Message internalExtract(const std::vector <std::string>& tokens)
     {
+        // Check size
+        if (tokens.size() < 22)
+        {
+            throw ParseException("Invalid line format");
+        }
+
         // Create message and assign attributes
         Sbs1Message sbs1Message;
         sbs1Message.message_type = getMessageTypeEnum(tokens[0]);
@@ -160,7 +162,8 @@ namespace SBS1
             const MessageType& value = messageTypeMap.at(type);
             return value;
         }
-        catch (const std::out_of_range&) {
+        catch (const std::out_of_range&)
+        {
             return MessageType::Undefined;
         }
     }
@@ -184,7 +187,8 @@ namespace SBS1
             const TransmissionType& value = transmissionTypeMap.at(type);
             return value;
         }
-        catch (const std::out_of_range&) {
+        catch (const std::out_of_range&)
+        {
             return TransmissionType::Undefined;
         }
     }
