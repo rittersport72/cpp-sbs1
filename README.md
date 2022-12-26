@@ -1,7 +1,7 @@
 # cpp-sbs1
 C++ library for parsing SBS1 base station-formatted ADS-B data.
 
-```
+```cpp
 // Create SBS1 string
 const std::string text = "MSG,3,111,11111,A955D1,111111,2022/09/23,11:27:53.001,2022/09/23,11:27:52.970,,40025,,,48.48807,9.62836,,,,,,0";
 
@@ -29,33 +29,34 @@ MSG,4,111,11111,A955D1,111111,2022/09/23,11:27:17.627,2022/09/23,11:27:17.580,,,
 MSG,5,111,11111,A955D1,111111,2022/09/23,11:27:17.642,2022/09/23,11:27:17.580,,40025,,,,,,,0,,0,0
 MSG,6,111,11111,A955D1,111111,2022/09/23,11:27:17.654,2022/09/23,11:27:17.644,,,,,,,,6655,0,0,0,0
 ```
-# References
+
+## Message attributes
+Parsed messages have the following fields:
+
+|Field            |Description                                                         |
+|-----------------|--------------------------------------------------------------------|
+|message_type     |`enum class` MessageType                                            |
+|transmission_type|`enum class` TransmissionType                                       |
+|session_id       |`unsigned int` Database session record number.                      |
+|aircraft_id      |`unsigned int` Database aircraft record number.                     |
+|ident            |`std::string` 24-bit ICACO ID, in hexadecimal.                      |
+|flight_id        |`unsigned int` Database flight record number.                       |
+|generated        |`std::tm` Date and time the message was generated.                  |
+|logged           |`std::tm` Date and time the message was logged.                     |
+|callsign         |`std::string` Eight character flight ID or callsign.                |
+|altitude         |`double` Mode C altitude relative to 1013 mb (29.92" Hg).           |
+|ground_speed     |`double` Speed over ground.                                         |
+|track            |`double` Ground track angle, in degree                              |
+|latitude         |`double` Latitude, in degree                                        |
+|longitude        |`double` Longitude, in degree                                       |
+|vertical_speed   |`double` Vertical speed, climb/descend rate                         |
+|squawk           |`unsigned short` Assigned mode A squawk code.                       |
+|alert            |`bool` Flag to indicate that squawk has changed.                    |
+|emergency        |`bool` Flag to indicate emergency code has been set.                |
+|special_position |`bool` Flag to indicate Special Position Indicator has been set.    |
+|on_ground        |`bool` Flag to indicate ground squat switch is active.              |
+
+## References
 Description of SBS1 protocol http://woodair.net/SBS/Article/Barebones42_Socket_Data.htm  
 SBS1 parser in Node.js https://github.com/wiseman/node-sbs1  
 SBS1 parser in Rust https://github.com/samcrow/rust-sbs1
-
-# Message attributes
-Parsed messages have the following fields:
-
-|Field            |Description                                                          |
-|-----------------|---------------------------------------------------------------------|
-|message_type     |`enum class`. MessageType                                            |
-|transmission_type|`enum class`. TransmissionType                                       |
-|session_id       |`unsigned int`. Database session record number.                      |
-|aircraft_id      |`unsigned int`. Database aircraft record number.                     |
-|ident            |`std::string`. 24-bit ICACO ID, in hexadecimal.                      |
-|flight_id        |`unsigned int`. Database flight record number.                       |
-|generated        |`std::tm`. Date and time the message was generated.                  |
-|logged           |`std::tm`. Date and time the message was logged.                     |
-|callsign         |`std::string`. Eight character flight ID or callsign.                |
-|altitude         |`double`. [Mode C] Altitude relative to 1013 mb (29.92" Hg).         |
-|ground_speed     |`double`. Speed over ground.                                         |
-|track            |`double`. Ground track angle, in degree                              |
-|latitude         |`double`. Latitude                                                   |
-|longitude        |`double`. Longitude                                                  |
-|vertical_speed   |`double`. Vertical speed, climb/descend rate                         |
-|squawk           |`unsigned short`. Assigned [Mode A] squawk code.                     |
-|alert            |`bool`. Flag to indicate that squawk has changed.                    |
-|emergency        |`bool`. Flag to indicate emergency code has been set.                |
-|special_position |`bool`. Flag to indicate Special Position Indicator has been set.    |
-|on_ground        |`bool`. Flag to indicate ground squat switch is active.              |
