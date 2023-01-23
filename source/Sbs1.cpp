@@ -66,20 +66,26 @@ namespace SBS1
             sbs1Message.flight_id = std::stoi(tokens[5]);
         }
 
-        std::istringstream datetime1(tokens[6] + " " + tokens[7]);
-        datetime1 >> std::get_time(&sbs1Message.generated, "%Y/%m/%d %H:%M:%S");
-
-        if (datetime1.fail())
+        if (tokens[6].length() > 0 && tokens[7].length() > 0)
         {
-            std::cout << "Parse generated time failed\n";
+            std::istringstream datetime(tokens[6] + " " + tokens[7]);
+            datetime >> std::get_time(&sbs1Message.generated, "%Y/%m/%d %H:%M:%S");
+
+            if (datetime.fail())
+            {
+                std::cout << "Parse generated time failed\n";
+            }
         }
 
-        std::istringstream datetime2(tokens[8] + " " + tokens[9]);
-        datetime2 >> std::get_time(&sbs1Message.logged, "%Y/%m/%d %H:%M:%S");
-
-        if (datetime2.fail())
+        if (tokens[8].length() > 0 && tokens[9].length() > 0)
         {
-            std::cout << "Parse logged time failed\n";
+            std::istringstream datetime(tokens[8] + " " + tokens[9]);
+            datetime >> std::get_time(&sbs1Message.logged, "%Y/%m/%d %H:%M:%S");
+
+            if (datetime.fail())
+            {
+                std::cout << "Parse logged time failed\n";
+            }
         }
         
         if (tokens[10].length() > 0)
