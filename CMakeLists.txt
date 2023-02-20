@@ -15,7 +15,5 @@ target_sources(sbs1 PRIVATE ${sources})
 
 target_include_directories(sbs1 PUBLIC "source/")
 
-# executable
-add_executable(sbs1test "test/Test.cpp")
-
-target_link_libraries(sbs1test PRIVATE sbs1)
+# look in test subdirectory
+add_subdirectory(test)
